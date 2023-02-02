@@ -13,7 +13,7 @@ public class Fish extends StaticMethodAndVariables {
 
         for(int i=0; i < threads.size(); i++) {
             threads.get(i).start();
-            threads.get(i).join();
+//            threads.get(i).join();
         }
     }
 }

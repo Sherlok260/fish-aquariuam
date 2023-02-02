@@ -12,7 +12,20 @@ public class FishTemplate extends StaticMethodAndVariables implements Runnable {
         this.gender = gender;
         this.numberOfFish = numberOfFish;
     }
-
+    public void check(String new_g, int new_x, int new_y, int new_z, int new_n) throws InterruptedException {
+        if(!new_g.equals(oldGender) && new_x == oldPositionX && new_y == oldPositionY && new_z == oldPositionZ) {
+            String rGen = randGen();
+            System.out.println("New Fish " + rGen + " was born -> " +
+                    new_g + "-" + new_n + " position: xyz(" + new_x + ":" + new_y + ":" + new_z + ") and " +
+                    oldGender + "-" + oldNumber + " position: xyz(" + oldPositionX + ":" + oldPositionY + ":" + oldPositionZ + ")");
+            if(rGen.equals("Woman")) {
+                System.out.println("------------------------------------------------------------------------------------------");
+                this.threads.add(new Thread(new FishTemplate("Woman",numberOfFishWoman))); numberOfFishWoman+=1;
+            } else {
+                this.threads.add(new Thread(new FishTemplate("Man",numberOfFishMan))); numberOfFishMan+=1;
+            }
+        }
+    }
     @Override
     public void run() {
         liveTime = liveTime();
